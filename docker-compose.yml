@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  activemq:
+    image: ivonet/activemq
+    ports:
+    - "8161:8161"
+    - "61616:61616"
+    - "61613:61613"
+    environment:
+    - ACTIVEMQ_MIN_MEMORY=512
+    - ACTIVEMQ_MAX_MEMORY=2048
+    - ACTIVEMQ_ENABLED_AUTH=true
+    - ACTIVEMQ_ADMIN_LOGIN=admin
+    - ACTIVEMQ_ADMIN_PASSWORD=secret
+    networks:
+      - stomp
+  
+  server:
+    build:
+      dockerfile: ./server.Dockerfile
+      context: ./src
+    networks:
+      - stomp
+
+  client:
+    build:
+      dockerfile: ./client.Dockerfile
+      context: ./src
+    networks:
+      - stomp
+      
+networks:
+  stomp:
+    name: stomp-network
