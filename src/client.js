@@ -21,8 +21,8 @@ async function main() {
                 console.error('Error: err');
                 return;
             }
-            
-            console.log(message);
+
+            console.log(`Received: ${message}`);
         })
     }
     catch (e) {
@@ -30,4 +30,5 @@ async function main() {
     }
 }
 
-main();
+console.log('Waiting for activemq starting...');
+setTimeout(main, 8000);

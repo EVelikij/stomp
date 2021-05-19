@@ -20,6 +20,8 @@ services:
     build:
       dockerfile: ./server.Dockerfile
       context: ./src
+    depends_on:
+      - activemq
     networks:
       - stomp
 
@@ -27,6 +29,8 @@ services:
     build:
       dockerfile: ./client.Dockerfile
       context: ./src
+    depends_on:
+      - activemq
     networks:
       - stomp
       

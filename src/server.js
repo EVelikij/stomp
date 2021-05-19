@@ -16,9 +16,9 @@ async function main() {
     
     try {
         await client.initializeConnection();
-        
+        let i = 1;
         setInterval(() => {
-            const msg = `Hello world! (${Date.now()})`;
+            const msg = `Hello world! (#${i++})`;
             console.log(`Sending: ${msg}`);
             
             client.send(msg);    
@@ -29,5 +29,6 @@ async function main() {
     }
 }
 
-main();
+console.log('Waiting for activemq starting...');
+setTimeout(main, 8000);
 

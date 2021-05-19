@@ -2,7 +2,7 @@ const stompit = require('stompit');
 
 class StompClient {
     #options= {};
-    #destination = '/queue/test';
+    #destination = '/topic/test';
     #client;
     
     constructor(options) {
